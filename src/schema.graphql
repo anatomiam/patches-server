@@ -5,6 +5,7 @@ const typeDefs = gql`
     knob(knobId: ID!): Knob
     knobsByUser(userId: ID!): [Knob!]!
     knobs: [Knob!]!
+    pedals: [Pedal!]!
   }
 
   type Mutation {
@@ -18,6 +19,19 @@ const typeDefs = gql`
     name: String!
     knobs: [Knob!]!
   }
+
+  type Pedal {
+    id: ID! 
+    name: String!
+    # dimensions: Dimensions!
+    selectedComponent: String
+    knobs: [Knob!]!
+  }
+
+  # type Dimensions {
+  #   width: Float!
+  #   height: Float!
+  # }
 
   type Knob {
     id: ID!

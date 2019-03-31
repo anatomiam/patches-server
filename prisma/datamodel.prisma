@@ -5,6 +5,19 @@ type User {
   knobs: [Knob!]!
 }
 
+type Pedal {
+  id: ID! @unique
+  name: String!
+  # dimensions: Dimensions!
+  selectedComponent: String
+  knobs: [Knob!]! 
+}
+
+# type Dimensions {
+#   width: Float!
+#   height: Float!
+# }
+
 type Knob {
   id: ID! @unique
   type: String!

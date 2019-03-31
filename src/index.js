@@ -1,54 +1,16 @@
 const { prisma } = require("../prisma/generated/prisma-client");
 const { ApolloServer } = require("apollo-server");
 const { typeDefs } = require("./schema.graphql");
+const Query = require("./resolvers/Query");
+const Knob = require("./resolvers/Knob");
+const User = require("./resolvers/User");
+const Mutation = require("./resolvers/Mutation");
 
 const resolvers = {
-  Query: {
-    knob(root, args, context) {
-      return context.db.knob({ id: args.knobId });
-    },
-    knobs(root, args, context) {
-      return context.db.knobs();
-    },
-    knobsByUser(root, args, context) {
-      return context.db
-        .user({
-          id: args.userId
-        })
-        .knobs();
-    }
-  },
-  Mutation: {
-    createKnob(root, args, context) {
-      return context.db.createKnob({
-        type: args.type,
-        description: args.description,
-        builder: { connect: { id: args.userId } },
-        cx: args.cx
-      });
-    },
-    createUser(root, args, context) {
-      return context.db.createUser({ name: args.name, email: args.email });
-    }
-  },
-  User: {
-    knobs(root, args, context) {
-      return context.db
-        .user({
-          id: root.id
-        })
-        .knobs();
-    }
-  },
-  Knob: {
-    builder(root, args, context) {
-      return context.db
-        .knob({
-          id: root.id
-        })
-        .builder();
-    }
-  }
+  Query,
+  Mutation,
+  Knob,
+  User
 };
 
 const server = new ApolloServer({

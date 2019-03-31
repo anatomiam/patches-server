@@ -7,6 +7,9 @@ const resolvers = {
     knob(root, args, context) {
       return context.db.knob({ id: args.knobId });
     },
+    knobs(root, args, context) {
+      return context.db.knobs();
+    },
     knobsByUser(root, args, context) {
       return context.db
         .user({
@@ -16,12 +19,12 @@ const resolvers = {
     }
   },
   Mutation: {
-    createDraft(root, args, context) {
+    createKnob(root, args, context) {
       return context.db.createKnob({
-        title: args.title,
-        builder: {
-          connect: { id: args.userId }
-        }
+        type: args.type,
+        description: args.description,
+        builder: { connect: { id: args.userId } },
+        cx: args.cx
       });
     },
     createUser(root, args, context) {

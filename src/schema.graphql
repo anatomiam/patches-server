@@ -4,11 +4,12 @@ const typeDefs = gql`
   type Query {
     knob(knobId: ID!): Knob
     knobsByUser(userId: ID!): [Knob!]!
+    knobs: [Knob!]!
   }
 
   type Mutation {
     createUser(name: String!, email: String!): User
-    createDraft(title: String!, userId: ID!): Knob
+    createKnob(type: String!,description: String! userId: ID!, cx: Float): Knob
   }
 
   type User {

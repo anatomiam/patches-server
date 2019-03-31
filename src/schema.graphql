@@ -23,15 +23,16 @@ const typeDefs = gql`
   type Pedal {
     id: ID! 
     name: String!
-    # dimensions: Dimensions!
+    dimensions: Dimensions!
     selectedComponent: String
     knobs: [Knob!]!
   }
 
-  # type Dimensions {
-  #   width: Float!
-  #   height: Float!
-  # }
+  type Dimensions {
+    id: ID!
+    width: Float!
+    height: Float!
+  }
 
   type Knob {
     id: ID!
@@ -43,6 +44,7 @@ const typeDefs = gql`
     r: Float
     angle: Float
     width: Float
+    pedal: Pedal
   }
 `
 

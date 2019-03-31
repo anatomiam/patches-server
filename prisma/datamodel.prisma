@@ -8,15 +8,16 @@ type User {
 type Pedal {
   id: ID! @unique
   name: String!
-  # dimensions: Dimensions!
+  dimensions: Dimensions!
   selectedComponent: String
   knobs: [Knob!]! 
 }
 
-# type Dimensions {
-#   width: Float!
-#   height: Float!
-# }
+type Dimensions {
+  id: ID! @unique
+  width: Float!
+  height: Float!
+}
 
 type Knob {
   id: ID! @unique
@@ -28,4 +29,5 @@ type Knob {
   r: Float
   angle: Float
   width: Float
+  pedal: Pedal
 }

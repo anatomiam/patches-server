@@ -6,6 +6,15 @@ function builder(root, args, context) {
     .builder();
 }
 
+function pedal(root, args, context) {
+  return context.db
+    .knob({
+      id: root.id
+    })
+    .pedal();
+}
+
 module.exports = {
-  builder
+  builder,
+  pedal
 };

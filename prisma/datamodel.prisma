@@ -8,15 +8,10 @@ type User {
 type Pedal {
   id: ID! @unique
   name: String!
-  dimensions: Dimensions!
-  selectedComponent: Knob @relation(name: "SelectedKnob")
-  knobs: [Knob!]! @relation(name: "ListKnobsOnPedal")
-}
-
-type Dimensions {
-  id: ID! @unique
   width: Float!
   height: Float!
+  selectedComponent: Knob @relation(name: "SelectedKnob")
+  knobs: [Knob!]! @relation(name: "ListKnobsOnPedal")
 }
 
 type Knob {

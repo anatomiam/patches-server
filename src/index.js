@@ -20,7 +20,8 @@ const server = new ApolloServer({
   resolvers,
   context: req => ({
     ...req,
-    db: prisma
+    db: prisma,
+    debug: true
   })
 });
 

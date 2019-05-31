@@ -10,7 +10,8 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(name: String!, email: String!): User
-    createKnob(type: String!,description: String! userId: ID!, cx: Float): Knob
+    createKnob(type: String!, description: String!, userId: ID!, cx: Float): Knob
+    createPedal(name: String!, width: Float, height: Float): Pedal
   }
 
   type User {
@@ -23,15 +24,10 @@ const typeDefs = gql`
   type Pedal {
     id: ID! 
     name: String!
-    dimensions: Dimensions!
-    selectedComponent: String
-    knobs: [Knob!]!
-  }
-
-  type Dimensions {
-    id: ID!
     width: Float!
     height: Float!
+    selectedComponent: Knob
+    knobs: [Knob!]!
   }
 
   type Knob {

@@ -4,14 +4,16 @@ const typeDefs = gql`
   type Query {
     knob(knobId: ID!): Knob
     knobsByUser(userId: ID!): [Knob!]!
+    knobsByPedal(pedalId: ID!): [Knob!]!
     knobs: [Knob!]!
+    pedal(pedalId: ID!): Pedal
     pedals: [Pedal!]!
   }
 
   type Mutation {
     createUser(name: String!, email: String!): User
     createKnob(type: String!, description: String!, userId: ID!, cx: Float): Knob
-    createPedal(name: String!, width: Float, height: Float): Pedal
+    createPedal(name: String!, width: Float, height: Float, knobs: [Knob!]!): Pedal
   }
 
   type User {
@@ -26,7 +28,6 @@ const typeDefs = gql`
     name: String!
     width: Float!
     height: Float!
-    selectedComponent: Knob
     knobs: [Knob!]!
   }
 

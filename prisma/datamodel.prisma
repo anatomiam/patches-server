@@ -10,7 +10,6 @@ type Pedal {
   name: String!
   width: Float!
   height: Float!
-  selectedComponent: Knob @relation(name: "SelectedKnob")
   knobs: [Knob!]! @relation(name: "ListKnobsOnPedal")
 }
 

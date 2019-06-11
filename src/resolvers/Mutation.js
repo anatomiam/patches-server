@@ -13,7 +13,8 @@ function createPedal(root, args, context) {
   return context.db.createPedal({
     name: args.name,
     width: args.width,
-    height: args.height
+    height: args.height,
+    knobs: args.knobs
   });
 }
 

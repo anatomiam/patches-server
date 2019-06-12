@@ -7,6 +7,7 @@ type User {
 
 type Pedal {
   id: ID! @unique
+  builder: User
   name: String!
   width: Float!
   height: Float!

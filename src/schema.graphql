@@ -1,6 +1,16 @@
 const { gql } = require("apollo-server");
 
 const typeDefs = gql`
+  input KnobsInput {
+    type: String! 
+    description: String! 
+    cx: Float
+    cy: Float
+    r: Float
+    angle: Float
+    width: Float
+  }
+
   type Query {
     knob(knobId: ID!): Knob
     knobsByUser(userId: ID!): [Knob!]!
@@ -12,8 +22,23 @@ const typeDefs = gql`
 
   type Mutation {
     createUser(name: String!, email: String!): User
-    createKnob(type: String!, description: String!, userId: ID!, cx: Float): Knob
-    createPedal(name: String!, width: Float, height: Float, knobs: [Knob!]!): Pedal
+    createKnob(
+      type: String!, 
+      description: String!, 
+      userId: ID!, 
+      cx: Float
+      cy: Float,
+      r: Float,
+      angle: Float,
+      width: Float
+      ): Knob
+    createPedal(
+      name: String!, 
+      builder: ID!, 
+      width: Float, 
+      height: Float
+      knobs: [KnobsInput]
+      ) : Pedal
   }
 
   type User {
@@ -25,6 +50,7 @@ const typeDefs = gql`
 
   type Pedal {
     id: ID! 
+    builder: User
     name: String!
     width: Float!
     height: Float!

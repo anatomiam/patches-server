@@ -1,8 +1,7 @@
 type User {
   id: ID! @unique
-  email: String @unique
-  name: String!
-  knobs: [Knob!]!
+  email: String! @unique
+  name: String! @unique
 }
 
 type Pedal {
@@ -18,7 +17,6 @@ type Knob {
   id: ID! @unique
   type: String!
   description: String!
-  builder: User
   cx: Float
   cy: Float
   r: Float

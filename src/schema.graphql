@@ -45,7 +45,6 @@ const typeDefs = gql`
     id: ID!
     email: String
     name: String!
-    knobs: [Knob!]!
   }
 
   type Pedal {
@@ -61,7 +60,6 @@ const typeDefs = gql`
     id: ID!
     type: String!
     description: String!
-    builder: User
     cx: Float
     cy: Float
     r: Float

@@ -4,15 +4,13 @@ const { typeDefs } = require("./schema.graphql");
 const Query = require("./resolvers/Query");
 const Knob = require("./resolvers/Knob");
 const Pedal = require("./resolvers/Pedal");
-const User = require("./resolvers/User");
 const Mutation = require("./resolvers/Mutation");
 
 const resolvers = {
   Query,
   Mutation,
   Knob,
-  Pedal,
-  User
+  Pedal
 };
 
 const server = new ApolloServer({

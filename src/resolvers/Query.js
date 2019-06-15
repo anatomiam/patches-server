@@ -6,14 +6,6 @@ function knobs(root, args, context) {
   return context.db.knobs();
 }
 
-function knobsByUser(root, args, context) {
-  return context.db
-    .user({
-      id: args.userId
-    })
-    .knobs();
-}
-
 function knobsByPedal(root, args, context) {
   return context.db
     .pedal({
@@ -33,7 +25,6 @@ function pedals(root, args, context) {
 module.exports = {
   knob,
   knobs,
-  knobsByUser,
   knobsByPedal,
   pedal,
   pedals

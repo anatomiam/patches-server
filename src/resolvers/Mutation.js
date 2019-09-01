@@ -21,6 +21,7 @@ function createPedal(root, args, context) {
     },
     width: args.width,
     height: args.height,
+    color: args.color,
     knobs: { create: args.knobs }
   });
 }

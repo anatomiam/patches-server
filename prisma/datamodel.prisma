@@ -10,6 +10,7 @@ type Pedal {
   name: String!
   width: Float!
   height: Float!
+  color: String
   knobs: [Knob!]! @relation(name: "ListKnobsOnPedal")
 }
 

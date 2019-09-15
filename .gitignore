@@ -1,3 +1,5 @@
 node_modules
 prisma/generated
 .DS_Store
+notes
+export*

@@ -19,6 +19,9 @@ const typeDefs = gql`
     knobs: [Knob!]!
     pedal(pedalId: ID!): Pedal
     pedals: [Pedal!]!
+    patch(patchId: ID!): Patch
+    preset(presetId: ID!): Preset
+    presetsByUser(userId: ID!): [Preset!]!
   }
 
   type Mutation {
@@ -71,6 +74,22 @@ const typeDefs = gql`
     angle: Float
     width: Float
     pedal: Pedal
+  }
+
+  type Patch {
+    id: ID!
+    preset: Preset
+    knob: Knob!
+    angle: Float!
+  }
+
+  type Preset {
+    id: ID!
+    user: User
+    pedal: Pedal
+    name: String!
+    description: String!
+    patches: [Patch!]
   }
 `
 

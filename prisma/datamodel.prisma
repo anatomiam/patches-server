@@ -26,3 +26,19 @@ type Knob {
   width: Float
   pedal: Pedal @relation(name: "ListKnobsOnPedal")
 }
+
+type Patch {
+  id: ID! @unique
+  preset: Preset
+  knob: Knob
+  angle: Float!
+}
+
+type Preset {
+  id: ID! @unique
+  user: User
+  pedal: Pedal
+  name: String!
+  description: String!
+  patches: [Patch!]
+}

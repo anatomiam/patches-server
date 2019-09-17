@@ -7,11 +7,7 @@ function knobs(root, args, context) {
 }
 
 function knobsByPedal(root, args, context) {
-  return context.db
-    .pedal({
-      id: args.pedalId
-    })
-    .knobs();
+  return context.db.pedal({ id: args.pedalId }).knobs();
 }
 
 function pedal(root, args, context) {

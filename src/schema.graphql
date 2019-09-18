@@ -12,6 +12,11 @@ const typeDefs = gql`
     width: Float
   }
 
+  input PatchesInput {
+    knob: ID!
+    angle: Float!
+  }
+
   type Query {
     knob(knobId: ID!): Knob
     knobsByUser(userId: ID!): [Knob!]!
@@ -45,6 +50,13 @@ const typeDefs = gql`
       color: String,
       knobs: [KnobsInput]
       ) : Pedal
+    createPreset(
+      user: ID!
+      pedal: ID
+      name: String!
+      description: String!
+      patches: [PatchesInput]
+      ) : Preset
   }
 
   type User {

@@ -3,3 +3,5 @@ prisma/generated
 .DS_Store
 notes
 export*
+
+query_examples.graphql

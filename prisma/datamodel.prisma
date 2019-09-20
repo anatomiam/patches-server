@@ -18,7 +18,7 @@ type Knob {
   id: ID! @unique
   type: String!
   description: String!
-  color: String!
+  color: String
   cx: Float
   cy: Float
   r: Float

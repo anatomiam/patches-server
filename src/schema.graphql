@@ -4,7 +4,7 @@ const typeDefs = gql`
   input KnobsInput {
     type: String! 
     description: String! 
-    color: String!
+    color: String
     cx: Float
     cy: Float
     r: Float
@@ -34,7 +34,7 @@ const typeDefs = gql`
     createKnob(
       type: String!, 
       description: String!, 
-      color: String!,
+      color: String,
       userId: ID!, 
       cx: Float
       cy: Float,
@@ -79,7 +79,7 @@ const typeDefs = gql`
     id: ID!
     type: String!
     description: String!
-    color: String!
+    color: String
     cx: Float
     cy: Float
     r: Float

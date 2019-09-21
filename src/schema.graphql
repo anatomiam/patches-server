@@ -12,6 +12,21 @@ const typeDefs = gql`
     width: Float
   }
 
+  input UpdateKnobInputDetails {
+    description: String 
+    color: String
+    cx: Float
+    cy: Float
+    r: Float
+    angle: Float
+    width: Float
+  }
+
+  input UpdateKnobsInput {
+    id: ID!
+    details: UpdateKnobInputDetails
+  }
+
   input PatchesInput {
     knob: ID!
     angle: Float!
@@ -49,6 +64,16 @@ const typeDefs = gql`
       height: Float,
       color: String,
       knobs: [KnobsInput]
+      ) : Pedal
+    updatePedal(
+      id: ID!
+      name: String, 
+      width: Float, 
+      height: Float,
+      color: String,
+      knobsToCreate: [KnobsInput],
+      knobsToDelete: [UpdateKnobsInput],
+      knobsToUpdate: [UpdateKnobsInput]
       ) : Pedal
     createPreset(
       user: ID!

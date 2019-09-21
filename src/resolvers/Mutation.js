@@ -22,6 +22,28 @@ function createPedal(root, args, context) {
   });
 }
 
+function updatePedal(root, args, context) {
+  return context.db.updatePedal({
+    where: { id: args.id },
+    data: {
+      name: args.name,
+      width: args.width,
+      height: args.height,
+      color: args.color,
+      knobs: {
+        create: args.knobsToCreate,
+        delete: args.knobsToDelete,
+        update: args.knobsToUpdate.map(knob => {
+          return {
+            where: { id: knob.id },
+            data: knob.details
+          };
+        })
+      }
+    }
+  });
+}
+
 function createPreset(root, args, context) {
   return context.db.createPreset({
     name: args.name,
@@ -41,5 +63,6 @@ module.exports = {
   createKnob,
   createUser,
   createPedal,
-  createPreset
+  createPreset,
+  updatePedal
 };

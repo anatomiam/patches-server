@@ -11,7 +11,7 @@ type Pedal {
   width: Float!
   height: Float!
   color: String!
-  knobs: [Knob!]! @relation(name: "ListKnobsOnPedal")
+  knobs: [Knob!]! @relation(name: "ListKnobsOnPedal" onDelete: CASCADE)
 }
 
 type Knob {
@@ -40,5 +40,5 @@ type Preset {
   pedal: Pedal
   name: String!
   description: String!
-  patches: [Patch!]
+  patches: [Patch!]!
 }

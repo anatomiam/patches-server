@@ -101,7 +101,7 @@ const typeDefs = gql`
     pedal: Pedal
     name: String!
     description: String!
-    patches: [Patch!]
+    patches: [Patch!]!
   }
 `
 

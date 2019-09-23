@@ -111,6 +111,7 @@ const typeDefs = gql`
     angle: Float
     width: Float
     pedal: Pedal
+    patches: [Patch!]!
   }
 
   type Patch {

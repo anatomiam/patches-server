@@ -25,12 +25,13 @@ type Knob {
   angle: Float
   width: Float
   pedal: Pedal @relation(name: "ListKnobsOnPedal")
+  patches: [Patch!]! @relation(name: "PatchKnob" onDelete: CASCADE)
 }
 
 type Patch {
   id: ID! @unique
   preset: Preset
-  knob: Knob
+  knob: Knob @relation(name: "PatchKnob")
   angle: Float!
 }
 

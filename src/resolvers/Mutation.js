@@ -53,7 +53,8 @@ function createPreset(root, args, context) {
     patches: {
       create: args.patches.map(patch => ({
         knob: { connect: { id: patch.knob } },
-        angle: patch.angle
+        angle: patch.angle,
+        notes: patch.notes
       }))
     }
   });

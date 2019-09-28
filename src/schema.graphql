@@ -30,6 +30,7 @@ const typeDefs = gql`
   input PatchesInput {
     knob: ID!
     angle: Float!
+    notes: String
   }
 
   type Query {
@@ -119,6 +120,7 @@ const typeDefs = gql`
     preset: Preset
     knob: Knob!
     angle: Float!
+    notes: String
   }
 
   type Preset {

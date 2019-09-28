@@ -30,16 +30,17 @@ type Knob {
 
 type Patch {
   id: ID! @unique
-  preset: Preset
+  preset: Preset @relation(name: "PresetPatch")
   knob: Knob @relation(name: "PatchKnob")
   angle: Float!
+  notes: String @default(value: "")
 }
 
 type Preset {
   id: ID! @unique
   user: User
   pedal: Pedal
-  name: String!
-  description: String!
-  patches: [Patch!]!
+  name: String! @default(value: "")
+  description: String! @default(value: "")
+  patches: [Patch!]! @relation(name: "PresetPatch" onDelete: CASCADE)
 }

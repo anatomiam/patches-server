@@ -8,7 +8,7 @@ const typeDefs = gql`
     cx: Float
     cy: Float
     r: Float
-    angle: Float
+    position: Float
     width: Float
   }
 
@@ -18,7 +18,7 @@ const typeDefs = gql`
     cx: Float
     cy: Float
     r: Float
-    angle: Float
+    position: Float
     width: Float
   }
 
@@ -29,7 +29,7 @@ const typeDefs = gql`
 
   input PatchesInput {
     knob: ID!
-    angle: Float!
+    position: Float!
     notes: String
   }
 
@@ -55,7 +55,7 @@ const typeDefs = gql`
       cx: Float
       cy: Float,
       r: Float,
-      angle: Float,
+      position: Float,
       width: Float
       ): Knob
     createPedal(
@@ -109,7 +109,7 @@ const typeDefs = gql`
     cx: Float
     cy: Float
     r: Float
-    angle: Float
+    position: Float
     width: Float
     pedal: Pedal
     patches: [Patch!]!
@@ -119,7 +119,7 @@ const typeDefs = gql`
     id: ID!
     preset: Preset
     knob: Knob!
-    angle: Float!
+    position: Float
     notes: String
   }
 

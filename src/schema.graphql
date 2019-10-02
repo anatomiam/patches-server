@@ -9,6 +9,7 @@ const typeDefs = gql`
     cy: Float
     r: Float
     position: Float
+    steps: Float
     width: Float
   }
 
@@ -19,6 +20,7 @@ const typeDefs = gql`
     cy: Float
     r: Float
     position: Float
+    steps: Float
     width: Float
   }
 
@@ -56,6 +58,7 @@ const typeDefs = gql`
       cy: Float,
       r: Float,
       position: Float,
+      steps: Float,
       width: Float
       ): Knob
     createPedal(
@@ -110,6 +113,7 @@ const typeDefs = gql`
     cy: Float
     r: Float
     position: Float
+    steps: Float
     width: Float
     pedal: Pedal
     patches: [Patch!]!

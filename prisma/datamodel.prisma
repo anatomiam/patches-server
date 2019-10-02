@@ -23,6 +23,7 @@ type Knob {
   cy: Float
   r: Float
   position: Float @default(value: "0")
+  steps: Float @default(value: "0")
   width: Float
   pedal: Pedal @relation(name: "ListKnobsOnPedal")
   patches: [Patch!]! @relation(name: "PatchKnob" onDelete: CASCADE)
@@ -32,7 +33,7 @@ type Patch {
   id: ID! @unique
   preset: Preset @relation(name: "PresetPatch")
   knob: Knob @relation(name: "PatchKnob")
-  position: Float
+  position: Float @default(value: "0")
   notes: String @default(value: "")
 }
 

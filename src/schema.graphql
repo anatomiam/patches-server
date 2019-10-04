@@ -35,6 +35,16 @@ const typeDefs = gql`
     notes: String
   }
 
+  input UpdatePatchInputDetails {
+    position: Float
+    notes: String
+  }
+
+  input UpdatePatchesInput {
+    id: ID!
+    details: UpdatePatchInputDetails
+  }
+
   type Query {
     knob(knobId: ID!): Knob
     knobsByUser(userId: ID!): [Knob!]!
@@ -85,6 +95,12 @@ const typeDefs = gql`
       name: String!
       description: String!
       patches: [PatchesInput]
+      ) : Preset
+    updatePreset(
+      id: ID!
+      name: ID
+      description: String!
+      patchesToUpdate: [UpdatePatchesInput]
       ) : Preset
   }
 

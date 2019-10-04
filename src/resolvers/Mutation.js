@@ -60,10 +60,29 @@ function createPreset(root, args, context) {
   });
 }
 
+function updatePreset(root, args, context) {
+  return context.db.updatePreset({
+    where: { id: args.id },
+    data: {
+      name: args.name,
+      description: args.description,
+      patches: {
+        update: args.patchesToUpdate.map(patch => {
+          return {
+            where: { id: patch.id },
+            data: patch.details
+          };
+        })
+      }
+    }
+  });
+}
+
 module.exports = {
   createKnob,
   createUser,
   createPedal,
   createPreset,
-  updatePedal
+  updatePedal,
+  updatePreset
 };

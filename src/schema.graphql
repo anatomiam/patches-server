@@ -98,8 +98,8 @@ const typeDefs = gql`
       ) : Preset
     updatePreset(
       id: ID!
-      name: ID
-      description: String!
+      name: String
+      description: String
       patchesToUpdate: [UpdatePatchesInput]
       ) : Preset
   }

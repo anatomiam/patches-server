@@ -6,6 +6,7 @@ const Knob = require("./resolvers/Knob");
 const Pedal = require("./resolvers/Pedal");
 const Patch = require("./resolvers/Patch");
 const Preset = require("./resolvers/Preset");
+const User = require("./resolvers/User");
 const Mutation = require("./resolvers/Mutation");
 
 const resolvers = {
@@ -14,7 +15,8 @@ const resolvers = {
   Knob,
   Pedal,
   Patch,
-  Preset
+  Preset,
+  User
 };
 
 const server = new ApolloServer({

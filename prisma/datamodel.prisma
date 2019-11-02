@@ -1,7 +1,10 @@
 type User {
   id: ID! @unique
   email: String! @unique
+  password: String!
   name: String! @unique
+  pedals: [Pedal!]!
+  presets: [Preset!]!
 }
 
 type Pedal {

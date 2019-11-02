@@ -57,7 +57,10 @@ const typeDefs = gql`
     presetsByUser(userId: ID!): [Preset!]!
   }
 
+
   type Mutation {
+    signup(email: String!, password: String!, name: String!): AuthPayload
+    login(email: String!, password: String!): AuthPayload
     createUser(name: String!, email: String!): User
     createKnob(
       type: String!, 
@@ -104,10 +107,18 @@ const typeDefs = gql`
       ) : Preset
   }
 
+  type AuthPayload {
+    token: String
+    user: User
+  }
+
   type User {
     id: ID!
     email: String
+    password: String!
     name: String!
+    pedals: [Pedal!]!
+    presets: [Preset!]!
   }
 
   type Pedal {

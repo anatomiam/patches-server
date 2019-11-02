@@ -1,0 +1,18 @@
+const jwt = require("jsonwebtoken");
+const APP_SECRET = "ishouldbeanenvironmentvariable";
+
+function getUserId(context) {
+  const authorization = context.req.get("Authorization");
+  if (authorization) {
+    const token = authorization.replace("Bearer ", "");
+    const { userId } = jwt.verify(token, APP_SECRET);
+    return userId;
+  }
+
+  throw new Error("Not authenticated");
+}
+
+module.exports = {
+  APP_SECRET,
+  getUserId
+};

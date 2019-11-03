@@ -116,7 +116,7 @@ const typeDefs = gql`
     email: String
     password: String!
     name: String!
-    tokenVersion: Float!
+    tokenVersion: Int!
     pedals: [Pedal!]!
     presets: [Preset!]!
   }

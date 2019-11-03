@@ -1,5 +1,4 @@
 const bcrypt = require("bcryptjs");
-const jwt = require("jsonwebtoken");
 const {
   createAccessToken,
   createRefreshToken,
@@ -44,10 +43,6 @@ function createKnob(root, args, context) {
     builder: { connect: { id: args.userId } },
     cx: args.cx
   });
-}
-
-function createUser(root, args, context) {
-  return context.db.createUser({ name: args.name, email: args.email });
 }
 
 function createPedal(root, args, context) {
@@ -122,7 +117,6 @@ module.exports = {
   signup,
   login,
   createKnob,
-  createUser,
   createPedal,
   createPreset,
   updatePedal,

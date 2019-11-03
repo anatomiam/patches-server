@@ -3,16 +3,19 @@ const ACCESS_TOKEN_SECRET = "access-ishouldbeanenvironmentvariable";
 const REFRESH_TOKEN_SECRET = "refresh-ishouldbeanenvironmentvariable";
 
 function createAccessToken(user, accessTokenSecret) {
-  const token = jwt.sign({ userId: user.id }, accessTokenSecret, {
+  return jwt.sign({ userId: user.id }, accessTokenSecret, {
     expiresIn: "15m"
   });
-  console.log(token);
-  return token;
 }
+
 function createRefreshToken(user, refreshTokenSecret) {
-  return jwt.sign({ userId: user.id }, refreshTokenSecret, {
-    expiresIn: "7d"
-  });
+  return jwt.sign(
+    { userId: user.id, tokenVersion: user.tokenVersion },
+    refreshTokenSecret,
+    {
+      expiresIn: "7d"
+    }
+  );
 }
 
 function sendRefreshToken(res, token) {

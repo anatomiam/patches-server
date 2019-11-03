@@ -62,6 +62,11 @@ app.post("/refresh_token", async (req, res) => {
     return res.send({ ok: false, accessToken: "" });
   }
 
+  // TODO increment tokenVersion when user resets pw to invalidate refresh token
+  if (user.tokenVersion !== payload.tokenVersion) {
+    return res.send({ ok: false, accessToken: "" });
+  }
+
   sendRefreshToken(res, createRefreshToken(user, REFRESH_TOKEN_SECRET));
 
   return res.send({

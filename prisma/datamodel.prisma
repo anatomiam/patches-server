@@ -3,6 +3,7 @@ type User {
   email: String! @unique
   password: String!
   name: String! @unique
+  tokenVersion: Float! @default(value: "0")
   pedals: [Pedal!]!
   presets: [Preset!]!
 }

@@ -3,17 +3,15 @@ const {
   createAccessToken,
   createRefreshToken,
   sendRefreshToken,
-  getUserId,
-  ACCESS_TOKEN_SECRET,
-  REFRESH_TOKEN_SECRET
+  getUserId
 } = require("../utils");
 
 async function signup(root, args, context, info) {
   const password = await bcrypt.hash(args.password, 10);
   const user = await context.db.createUser({ ...args, password });
-  const refresh_token = createRefreshToken(user, REFRESH_TOKEN_SECRET);
+  const refresh_token = createRefreshToken(user);
   return {
-    token: createAccessToken(user, ACCESS_TOKEN_SECRET),
+    token: createAccessToken(user),
     user
   };
 }
@@ -28,10 +26,10 @@ async function login(root, args, context, info) {
     throw new Error("Invalid password");
   }
 
-  sendRefreshToken(context.res, createRefreshToken(user, REFRESH_TOKEN_SECRET));
+  sendRefreshToken(context.res, createRefreshToken(user));
 
   return {
-    token: createAccessToken(user, ACCESS_TOKEN_SECRET),
+    token: createAccessToken(user),
     user
   };
 }

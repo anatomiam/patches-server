@@ -2,16 +2,16 @@ const jwt = require("jsonwebtoken");
 const ACCESS_TOKEN_SECRET = "access-ishouldbeanenvironmentvariable";
 const REFRESH_TOKEN_SECRET = "refresh-ishouldbeanenvironmentvariable";
 
-function createAccessToken(user, accessTokenSecret) {
-  return jwt.sign({ userId: user.id }, accessTokenSecret, {
+function createAccessToken(user) {
+  return jwt.sign({ userId: user.id }, ACCESS_TOKEN_SECRET, {
     expiresIn: "15m"
   });
 }
 
-function createRefreshToken(user, refreshTokenSecret) {
+function createRefreshToken(user) {
   return jwt.sign(
     { userId: user.id, tokenVersion: user.tokenVersion },
-    refreshTokenSecret,
+    REFRESH_TOKEN_SECRET,
     {
       expiresIn: "7d"
     }
@@ -21,7 +21,7 @@ function createRefreshToken(user, refreshTokenSecret) {
 function sendRefreshToken(res, token) {
   res.cookie("refresh", token, {
     httpOnly: true,
-    path: "/refresh_token"
+    path: "/"
   });
 }
 
@@ -29,7 +29,7 @@ function getUserId(context) {
   const authorization = context.req.get("Authorization");
   if (authorization) {
     const token = authorization.replace("Bearer ", "");
-    const { userId } = jwt.verify(token, APP_SECRET);
+    const { userId } = jwt.verify(token, ACCESS_TOKEN_SECRET);
     return userId;
   }
 

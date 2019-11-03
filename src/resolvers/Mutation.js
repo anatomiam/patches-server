@@ -1,20 +1,25 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
-const { APP_SECRET, getUserId } = require("../utils");
+const {
+  createAccessToken,
+  createRefreshToken,
+  sendRefreshToken,
+  getUserId,
+  ACCESS_TOKEN_SECRET,
+  REFRESH_TOKEN_SECRET
+} = require("../utils");
 
-async function signup(parent, args, context, info) {
+async function signup(root, args, context, info) {
   const password = await bcrypt.hash(args.password, 10);
   const user = await context.db.createUser({ ...args, password });
-  const token = jwt.sign({ userId: user.id }, APP_SECRET, {
-    expiresIn: "15m"
-  });
+  const refresh_token = createRefreshToken(user, REFRESH_TOKEN_SECRET);
   return {
-    token,
+    token: createAccessToken(user, ACCESS_TOKEN_SECRET),
     user
   };
 }
 
-async function login(parent, args, context, info) {
+async function login(root, args, context, info) {
   const user = await context.db.user({ email: args.email });
   if (!user) {
     throw new Error("No such user found");
@@ -23,9 +28,11 @@ async function login(parent, args, context, info) {
   if (!valid) {
     throw new Error("Invalid password");
   }
-  const token = jwt.sign({ userId: user.id }, APP_SECRET);
+
+  sendRefreshToken(context.res, createRefreshToken(user, REFRESH_TOKEN_SECRET));
+
   return {
-    token,
+    token: createAccessToken(user, ACCESS_TOKEN_SECRET),
     user
   };
 }

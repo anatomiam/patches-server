@@ -34,6 +34,11 @@ async function login(root, args, context, info) {
   };
 }
 
+async function logout(root, args, context, info) {
+  sendRefreshToken(context.res, "");
+  return true;
+}
+
 function createKnob(root, args, context) {
   return context.db.createKnob({
     type: args.type,
@@ -114,6 +119,7 @@ function updatePreset(root, args, context) {
 module.exports = {
   signup,
   login,
+  logout,
   createKnob,
   createPedal,
   createPreset,

@@ -1,3 +1,5 @@
+const { getUserId } = require("../utils");
+
 function knob(root, args, context) {
   return context.db.knob({ id: args.knobId });
 }
@@ -30,6 +32,11 @@ function presetsByUser(root, args, context) {
   return context.db.presets({ where: { user: { id: args.userId } } });
 }
 
+function users(root, args, context) {
+  const userId = getUserId(context);
+  return context.db.users();
+}
+
 module.exports = {
   knob,
   knobs,
@@ -38,5 +45,6 @@ module.exports = {
   pedals,
   patch,
   preset,
-  presetsByUser
+  presetsByUser,
+  users
 };

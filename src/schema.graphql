@@ -36,6 +36,7 @@ const typeDefs = gql`
   }
 
   input UpdatePatchInputDetails {
+    knob: ID!
     position: Float
     notes: String
   }

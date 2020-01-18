@@ -105,10 +105,18 @@ function updatePreset(root, args, context) {
       name: args.name,
       description: args.description,
       patches: {
-        update: args.patchesToUpdate.map(patch => {
+        upsert: args.patchesToUpdate.map(patch => {
           return {
             where: { id: patch.id },
-            data: patch.details
+            update: {
+              position: patch.details.position,
+              notes: patch.details.notes
+            },
+            create: {
+              knob: { connect: { id: patch.details.knob } },
+              position: patch.details.position,
+              notes: patch.details.notes
+            }
           };
         })
       }
